@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "../services/api";
 
-// =====================================================
-// EMPTY PROFILE
-// =====================================================
 
 const EMPTY_PROFILE = {
   name: "",
@@ -32,9 +29,6 @@ const EMPTY_PROFILE = {
   firstGraduate: "",
 };
 
-// =====================================================
-// GET LOGGED-IN EMAIL
-// =====================================================
 
 const getLoggedInEmail = () => {
   try {
@@ -65,9 +59,6 @@ const getLoggedInEmail = () => {
   }
 };
 
-// =====================================================
-// GET FIRST VALID VALUE
-// =====================================================
 
 const getValue = (...values) => {
   for (const value of values) {
@@ -83,9 +74,6 @@ const getValue = (...values) => {
   return "";
 };
 
-// =====================================================
-// NORMALIZE PROFILE RESPONSE
-// =====================================================
 
 const normalizeProfile = (response) => {
   console.log("====================================");
@@ -98,10 +86,7 @@ const normalizeProfile = (response) => {
   }
 
   let data = response;
-
-  // ---------------------------------------------------
-  // UNWRAP N8N RESPONSE
-  // ---------------------------------------------------
+-
 
   let counter = 0;
 
@@ -171,9 +156,6 @@ const normalizeProfile = (response) => {
     break;
   }
 
-  // ---------------------------------------------------
-  // FINAL ARRAY CHECK
-  // ---------------------------------------------------
 
   if (Array.isArray(data)) {
     data = data[0] || {};
@@ -186,9 +168,6 @@ const normalizeProfile = (response) => {
   console.log("ACTUAL PROFILE OBJECT:");
   console.log(data);
 
-  // ===================================================
-  // CONVERT TO FRONTEND FORMAT
-  // ===================================================
 
   const normalized = {
     ...EMPTY_PROFILE,
@@ -324,9 +303,6 @@ const normalizeProfile = (response) => {
   return normalized;
 };
 
-// =====================================================
-// FIELD COMPONENT
-// =====================================================
 
 function Field({
   label,
@@ -381,10 +357,6 @@ function Field({
   );
 }
 
-// =====================================================
-// SECTION HEADER
-// =====================================================
-
 function SectionHeader({
   icon,
   title,
@@ -409,9 +381,6 @@ function SectionHeader({
   );
 }
 
-// =====================================================
-// PROFILE COMPONENT
-// =====================================================
 
 export default function Profile() {
   const [profile, setProfile] =
@@ -432,9 +401,6 @@ export default function Profile() {
   const [error, setError] =
     useState("");
 
-  // ===================================================
-  // LOAD PROFILE
-  // ===================================================
 
   useEffect(() => {
     const loadProfile = async () => {
@@ -442,9 +408,7 @@ export default function Profile() {
       setError("");
 
       try {
-        // ---------------------------------------------
-        // GET EMAIL
-        // ---------------------------------------------
+        
 
         const email =
           getLoggedInEmail();
@@ -463,9 +427,6 @@ export default function Profile() {
           return;
         }
 
-        // ---------------------------------------------
-        // CALL N8N GET PROFILE
-        // ---------------------------------------------
 
         const response =
           await getProfile(email);
@@ -475,9 +436,6 @@ export default function Profile() {
           response
         );
 
-        // ---------------------------------------------
-        // NORMALIZE RESPONSE
-        // ---------------------------------------------
 
         const profileData =
           normalizeProfile(response);
@@ -487,9 +445,6 @@ export default function Profile() {
           profileData
         );
 
-        // ---------------------------------------------
-        // CHECK REAL DATA
-        // ---------------------------------------------
 
         const hasRealData =
           Object.values(
@@ -511,9 +466,6 @@ export default function Profile() {
             ...profileData,
           });
 
-          // -------------------------------------------
-          // SAVE LOCAL COPY
-          // -------------------------------------------
 
           localStorage.setItem(
             "profile",
@@ -526,10 +478,7 @@ export default function Profile() {
             "PROFILE SUCCESSFULLY LOADED."
           );
         } else {
-          // -------------------------------------------
-          // FALLBACK LOCAL STORAGE
-          // -------------------------------------------
-
+          
           const stored =
             localStorage.getItem(
               "profile"
@@ -566,9 +515,6 @@ export default function Profile() {
             "Unable to load profile from server."
         );
 
-        // ---------------------------------------------
-        // LOCAL STORAGE FALLBACK
-        // ---------------------------------------------
 
         try {
           const stored =
@@ -601,9 +547,7 @@ export default function Profile() {
     loadProfile();
   }, []);
 
-  // ===================================================
-  // HANDLE INPUT CHANGE
-  // ===================================================
+
 
   const handleChange = (e) => {
     const {
@@ -622,9 +566,7 @@ export default function Profile() {
     setError("");
   };
 
-  // ===================================================
-  // SAVE PROFILE
-  // ===================================================
+
 
   const handleSave = async () => {
     setSaving(true);
@@ -632,10 +574,7 @@ export default function Profile() {
     setError("");
 
     try {
-      // ---------------------------------------------
-      // GET EMAIL
-      // ---------------------------------------------
-
+      
       const email =
         getLoggedInEmail();
 
@@ -648,9 +587,7 @@ export default function Profile() {
         return;
       }
 
-      // ---------------------------------------------
-      // CLEAN DATA
-      // ---------------------------------------------
+      
 
       const profileToSave = {
         name: profile.name || "",
@@ -717,10 +654,7 @@ export default function Profile() {
         "===================================="
       );
 
-      // ---------------------------------------------
-      // UPDATE N8N / SUPABASE
-      // ---------------------------------------------
-
+      
       const response =
         await updateProfile(
           profileToSave
@@ -731,19 +665,14 @@ export default function Profile() {
         response
       );
 
-      // ---------------------------------------------
-      // NORMALIZE RESPONSE
-      // ---------------------------------------------
+     
 
       let updatedProfile =
         normalizeProfile(
           response
         );
 
-      // ---------------------------------------------
-      // CHECK RESPONSE DATA
-      // ---------------------------------------------
-
+      
       const responseHasValues =
         Object.values(
           updatedProfile
@@ -754,11 +683,7 @@ export default function Profile() {
             String(value).trim() !== ""
         );
 
-      // ---------------------------------------------
-      // IF N8N RETURNS ONLY SUCCESS MESSAGE,
-      // USE DATA WE SENT
-      // ---------------------------------------------
-
+      
       if (!responseHasValues) {
         updatedProfile =
           normalizeProfile(
@@ -766,18 +691,14 @@ export default function Profile() {
           );
       }
 
-      // ---------------------------------------------
-      // UPDATE FRONTEND
-      // ---------------------------------------------
+     
 
       setProfile({
         ...EMPTY_PROFILE,
         ...updatedProfile,
       });
 
-      // ---------------------------------------------
-      // SAVE LOCAL STORAGE
-      // ---------------------------------------------
+      
 
       localStorage.setItem(
         "profile",
@@ -786,9 +707,7 @@ export default function Profile() {
         )
       );
 
-      // ---------------------------------------------
-      // UPDATE USER EMAIL
-      // ---------------------------------------------
+    
 
       try {
         const loggedUser =
@@ -819,9 +738,6 @@ export default function Profile() {
         );
       }
 
-      // ---------------------------------------------
-      // FINISH
-      // ---------------------------------------------
 
       setEdit(false);
 
@@ -843,9 +759,6 @@ export default function Profile() {
     }
   };
 
-  // ===================================================
-  // CANCEL
-  // ===================================================
 
   const handleCancel = () => {
     try {
@@ -877,19 +790,12 @@ export default function Profile() {
     }
   };
 
-  // ===================================================
-  // EDIT
-  // ===================================================
 
   const handleEdit = () => {
     setEdit(true);
     setMessage("");
     setError("");
   };
-
-  // ===================================================
-  // LOADING SCREEN
-  // ===================================================
 
   if (loading) {
     return (
@@ -911,18 +817,12 @@ export default function Profile() {
     );
   }
 
-  // ===================================================
-  // UI
-  // ===================================================
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 py-8 px-4">
 
       <div className="max-w-6xl mx-auto">
 
-        {/* =================================================
-            HEADER
-        ================================================= */}
 
         <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 rounded-3xl p-6 md:p-8 text-white shadow-xl mb-8">
 
@@ -972,9 +872,6 @@ export default function Profile() {
 
         </div>
 
-        {/* =================================================
-            SUCCESS MESSAGE
-        ================================================= */}
 
         {message && (
           <div className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 font-medium">
@@ -982,9 +879,6 @@ export default function Profile() {
           </div>
         )}
 
-        {/* =================================================
-            ERROR MESSAGE
-        ================================================= */}
 
         {error && (
           <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 font-medium">
@@ -992,9 +886,6 @@ export default function Profile() {
           </div>
         )}
 
-        {/* =================================================
-            BASIC DETAILS
-        ================================================= */}
 
         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8 mb-8">
 
@@ -1227,9 +1118,6 @@ export default function Profile() {
 
         </div>
 
-        {/* =================================================
-            ACADEMIC DETAILS
-        ================================================= */}
 
         <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8 mb-8">
 
@@ -1471,9 +1359,6 @@ export default function Profile() {
 
         </div>
 
-        {/* =================================================
-            SAVE / CANCEL
-        ================================================= */}
 
         {edit && (
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 flex flex-col sm:flex-row justify-end gap-4">
@@ -1501,9 +1386,6 @@ export default function Profile() {
           </div>
         )}
 
-        {/* =================================================
-            FOOTER
-        ================================================= */}
 
         <div className="text-center mt-6 mb-8">
 
