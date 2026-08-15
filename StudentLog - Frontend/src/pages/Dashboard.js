@@ -28,9 +28,6 @@ export default function Dashboard() {
   // Controls sidebar animation
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
-  // =====================================================
-  // SAMPLE DATA
-  // =====================================================
 
   const timetable = [
     {
@@ -134,9 +131,6 @@ export default function Dashboard() {
     },
   ];
 
-  // =====================================================
-  // LOAD USER + PROFILE
-  // =====================================================
 
   useEffect(() => {
     try {
@@ -155,9 +149,6 @@ export default function Dashboard() {
     }
   }, []);
 
-  // =====================================================
-  // STUDENT INFORMATION
-  // =====================================================
 
   const studentName =
     profile.name ||
@@ -176,9 +167,6 @@ export default function Dashboard() {
     profile.currentSem ||
     "";
 
-  // =====================================================
-  // DATE
-  // =====================================================
 
   const today = new Date();
 
@@ -192,9 +180,6 @@ export default function Dashboard() {
     }
   );
 
-  // =====================================================
-  // QUICK ACCESS
-  // =====================================================
 
   const quickAccess = [
     {
@@ -235,26 +220,18 @@ export default function Dashboard() {
     },
   ];
 
-  // =====================================================
-  // RENDER
-  // =====================================================
 
   return (
     <div className="min-h-screen bg-slate-100">
 
-      {/* =================================================
-          SIDEBAR
-      ================================================= */}
+
 
       <Sidebar
         expanded={sidebarExpanded}
         setExpanded={setSidebarExpanded}
       />
 
-      {/* =================================================
-          MAIN CONTENT
-      ================================================= */}
-
+  
       <div
         className={`
           min-h-screen
@@ -265,19 +242,17 @@ export default function Dashboard() {
         `}
       >
 
-        {/* NAVBAR */}
+
 
         <Navbar />
 
-        {/* MAIN */}
+
 
         <main className="p-5 md:p-8">
 
           <div className="max-w-7xl mx-auto">
 
-            {/* =================================================
-                WELCOME
-            ================================================= */}
+
 
             <section
               className="
@@ -434,9 +409,6 @@ export default function Dashboard() {
 
             </section>
 
-            {/* =================================================
-                STATISTICS
-            ================================================= */}
 
             <section
               className="
@@ -479,9 +451,7 @@ export default function Dashboard() {
 
             </section>
 
-            {/* =================================================
-                TIMETABLE
-            ================================================= */}
+
 
             <section
               className="
@@ -605,9 +575,6 @@ export default function Dashboard() {
 
             </section>
 
-            {/* =================================================
-                EXAMS + EVENTS
-            ================================================= */}
 
             <div
               className="
@@ -781,9 +748,6 @@ export default function Dashboard() {
 
             </div>
 
-            {/* =================================================
-                ANNOUNCEMENTS
-            ================================================= */}
 
             <section
               className="
@@ -869,9 +833,6 @@ export default function Dashboard() {
 
             </section>
 
-            {/* =================================================
-                QUICK ACCESS
-            ================================================= */}
 
             <section className="mb-8">
 
@@ -977,9 +938,6 @@ export default function Dashboard() {
   );
 }
 
-// =====================================================
-// STAT CARD
-// =====================================================
 
 function StatCard({
   title,
@@ -1043,9 +1001,6 @@ function StatCard({
   );
 }
 
-// =====================================================
-// SECTION TITLE
-// =====================================================
 
 function SectionTitle({
   icon: Icon,
@@ -1096,9 +1051,6 @@ function SectionTitle({
   );
 }
 
-// =====================================================
-// INFO ITEM
-// =====================================================
 
 function InfoItem({
   icon: Icon,
