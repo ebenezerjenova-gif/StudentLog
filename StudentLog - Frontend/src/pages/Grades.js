@@ -15,11 +15,6 @@ export default function Grades() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // =====================================================
-  // SAMPLE GRADES
-  // Used when n8n does not return grade data
-  // =====================================================
-
   const sampleGrades = [
     {
       subject: "Data Structures",
@@ -83,10 +78,6 @@ export default function Grades() {
     },
   ];
 
-  // =====================================================
-  // FETCH GRADES
-  // =====================================================
-
   const fetchGrades = async () => {
     try {
       setLoading(true);
@@ -146,17 +137,10 @@ export default function Grades() {
     }
   };
 
-  // =====================================================
-  // LOAD DATA
-  // =====================================================
-
   useEffect(() => {
     fetchGrades();
   }, []);
 
-  // =====================================================
-  // CALCULATIONS
-  // =====================================================
 
   const totalSubjects = grades.length;
 
@@ -202,10 +186,6 @@ export default function Grades() {
         ).toFixed(2)
       : "0.00";
 
-  // =====================================================
-  // LOADING
-  // =====================================================
-
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-100 flex items-center justify-center">
@@ -235,18 +215,11 @@ export default function Grades() {
     );
   }
 
-  // =====================================================
-  // RENDER
-  // =====================================================
-
   return (
     <div className="min-h-screen bg-slate-100 p-5 md:p-8">
 
       <div className="max-w-7xl mx-auto">
 
-        {/* =================================================
-            HEADER
-        ================================================= */}
 
         <div className="mb-8">
 
@@ -292,9 +265,6 @@ export default function Grades() {
 
         </div>
 
-        {/* =================================================
-            ERROR / INFORMATION
-        ================================================= */}
 
         {error && (
           <div
@@ -318,10 +288,6 @@ export default function Grades() {
             </span>
           </div>
         )}
-
-        {/* =================================================
-            SUMMARY CARDS
-        ================================================= */}
 
         <div
           className="
@@ -368,10 +334,6 @@ export default function Grades() {
 
         </div>
 
-        {/* =================================================
-            GRADE TABLE
-        ================================================= */}
-
         <div
           className="
             bg-white
@@ -416,7 +378,7 @@ export default function Grades() {
 
           </div>
 
-          {/* TABLE */}
+          
 
           <div className="overflow-x-auto">
 
@@ -515,7 +477,7 @@ export default function Grades() {
 
                         </td>
 
-                        {/* CODE */}
+                       
 
                         <td
                           className="
@@ -527,7 +489,7 @@ export default function Grades() {
                           {code}
                         </td>
 
-                        {/* INTERNAL */}
+                        
 
                         <td
                           className="
@@ -612,10 +574,6 @@ export default function Grades() {
 
         </div>
 
-        {/* =================================================
-            GRADE SCALE
-        ================================================= */}
-
         <div
           className="
             mt-8
@@ -688,10 +646,6 @@ export default function Grades() {
 
         </div>
 
-        {/* =================================================
-            FOOTER
-        ================================================= */}
-
         <div
           className="
             text-center
@@ -708,10 +662,6 @@ export default function Grades() {
     </div>
   );
 }
-
-// =====================================================
-// SUMMARY CARD
-// =====================================================
 
 function SummaryCard({
   title,
@@ -785,10 +735,6 @@ function SummaryCard({
   );
 }
 
-// =====================================================
-// GRADE BADGE
-// =====================================================
-
 function GradeBadge({ grade }) {
   const styles = {
     O: "bg-emerald-100 text-emerald-700",
@@ -823,10 +769,6 @@ function GradeBadge({ grade }) {
     </span>
   );
 }
-
-// =====================================================
-// GRADE SCALE
-// =====================================================
 
 function GradeScale({
   grade,
