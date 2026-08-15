@@ -13,10 +13,6 @@ export default function Attendance() {
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // =====================================================
-  // SAMPLE ATTENDANCE DATA
-  // Replace this later with n8n API response
-  // =====================================================
 
   const sampleAttendance = [
     {
@@ -57,9 +53,6 @@ export default function Attendance() {
     },
   ];
 
-  // =====================================================
-  // LOAD ATTENDANCE
-  // =====================================================
 
   useEffect(() => {
     const loadAttendance = () => {
@@ -72,9 +65,6 @@ export default function Attendance() {
     loadAttendance();
   }, []);
 
-  // =====================================================
-  // CALCULATE STATISTICS
-  // =====================================================
 
   const totalClasses = attendance.reduce(
     (total, item) => total + item.totalClasses,
@@ -96,9 +86,6 @@ export default function Attendance() {
       ? ((totalAttended / totalClasses) * 100).toFixed(1)
       : 0;
 
-  // =====================================================
-  // GET ATTENDANCE STATUS
-  // =====================================================
 
   const getStatus = (percentage) => {
     if (percentage >= 90) {
@@ -121,9 +108,6 @@ export default function Attendance() {
     };
   };
 
-  // =====================================================
-  // LOADING
-  // =====================================================
 
   if (loading) {
     return (
@@ -139,18 +123,10 @@ export default function Attendance() {
     );
   }
 
-  // =====================================================
-  // UI
-  // =====================================================
-
   return (
     <div className="min-h-screen bg-slate-100 p-6 md:p-8">
 
       <div className="max-w-7xl mx-auto">
-
-        {/* =================================================
-            HEADER
-        ================================================= */}
 
         <div className="mb-8">
 
@@ -173,10 +149,6 @@ export default function Attendance() {
           </div>
 
         </div>
-
-        {/* =================================================
-            STATISTICS
-        ================================================= */}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
 
@@ -210,8 +182,6 @@ export default function Attendance() {
 
           </div>
 
-          {/* Total Classes */}
-
           <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition">
 
             <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
@@ -232,8 +202,6 @@ export default function Attendance() {
 
           </div>
 
-          {/* Attended */}
-
           <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition">
 
             <div className="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center">
@@ -253,8 +221,6 @@ export default function Attendance() {
             </p>
 
           </div>
-
-          {/* Absent */}
 
           <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-lg transition">
 
@@ -278,9 +244,6 @@ export default function Attendance() {
 
         </div>
 
-        {/* =================================================
-            ATTENDANCE WARNING
-        ================================================= */}
 
         {Number(overallPercentage) < 75 ? (
           <div className="mb-8 p-5 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4">
@@ -325,9 +288,6 @@ export default function Attendance() {
           </div>
         )}
 
-        {/* =================================================
-            SUBJECT-WISE ATTENDANCE
-        ================================================= */}
 
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
 
@@ -404,7 +364,7 @@ export default function Attendance() {
                       "
                     >
 
-                      {/* Subject */}
+                    
 
                       <td className="px-6 py-5">
 
@@ -414,13 +374,13 @@ export default function Attendance() {
 
                       </td>
 
-                      {/* Total */}
+                    
 
                       <td className="px-6 py-5 text-gray-600">
                         {item.totalClasses}
                       </td>
 
-                      {/* Attended */}
+                  
 
                       <td className="px-6 py-5">
 
@@ -434,7 +394,7 @@ export default function Attendance() {
 
                       </td>
 
-                      {/* Absent */}
+             
 
                       <td className="px-6 py-5">
 
@@ -448,7 +408,7 @@ export default function Attendance() {
 
                       </td>
 
-                      {/* Percentage */}
+              
 
                       <td className="px-6 py-5 min-w-[180px]">
 
@@ -503,9 +463,6 @@ export default function Attendance() {
 
         </div>
 
-        {/* =================================================
-            FOOTER
-        ================================================= */}
 
         <div className="text-center text-sm text-gray-400 py-8">
           StudentLog • Attendance Management
