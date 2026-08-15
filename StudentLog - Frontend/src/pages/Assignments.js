@@ -89,17 +89,13 @@ export default function Assignments() {
   return (
     <div className="min-h-screen bg-slate-100">
 
-      {/* =====================================================
-          PAGE CONTENT ONLY
-      ===================================================== */}
+
 
       <main className="p-5 md:p-8">
 
         <div className="max-w-7xl mx-auto">
 
-          {/* =================================================
-              HEADER
-          ================================================= */}
+
 
           <section className="mb-8">
 
@@ -138,7 +134,7 @@ export default function Assignments() {
 
               </div>
 
-              {/* TOTAL ASSIGNMENTS */}
+
 
               <div
                 className="
@@ -166,9 +162,7 @@ export default function Assignments() {
 
           </section>
 
-          {/* =================================================
-              STATISTICS
-          ================================================= */}
+
 
           <section className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
 
@@ -183,7 +177,7 @@ export default function Assignments() {
               valueStyle="text-orange-500"
             />
 
-            {/* SUBMITTED */}
+
 
             <AssignmentStat
               title="Submitted"
@@ -207,9 +201,7 @@ export default function Assignments() {
 
           </section>
 
-          {/* =================================================
-              ASSIGNMENT LIST
-          ================================================= */}
+
 
           <section
             className="
@@ -222,7 +214,7 @@ export default function Assignments() {
             "
           >
 
-            {/* SECTION HEADER */}
+
 
             <div className="px-6 py-5 border-b border-gray-100">
 
@@ -258,7 +250,7 @@ export default function Assignments() {
 
             </div>
 
-            {/* ASSIGNMENTS */}
+
 
             <div className="p-5 space-y-5">
 
@@ -273,9 +265,7 @@ export default function Assignments() {
 
           </section>
 
-          {/* =================================================
-              FOOTER
-          ================================================= */}
+
 
           <footer className="text-center text-sm text-gray-400 py-8">
             StudentLog • Assignments
@@ -289,9 +279,6 @@ export default function Assignments() {
   );
 }
 
-/* =========================================================
-   STATISTICS CARD
-========================================================= */
 
 function AssignmentStat({
   title,
@@ -361,9 +348,7 @@ function AssignmentStat({
   );
 }
 
-/* =========================================================
-   ASSIGNMENT CARD
-========================================================= */
+
 
 function AssignmentCard({ assignment }) {
 
@@ -396,7 +381,7 @@ function AssignmentCard({ assignment }) {
 
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
 
-        {/* ASSIGNMENT INFORMATION */}
+
 
         <div className="flex gap-4">
 
@@ -417,7 +402,7 @@ function AssignmentCard({ assignment }) {
 
           <div className="min-w-0">
 
-            {/* SUBJECT + PRIORITY */}
+
 
             <div className="flex flex-wrap items-center gap-2">
 
@@ -450,19 +435,19 @@ function AssignmentCard({ assignment }) {
 
             </div>
 
-            {/* TITLE */}
+
 
             <h3 className="text-lg md:text-xl font-bold text-gray-800 mt-3">
               {assignment.title}
             </h3>
 
-            {/* DESCRIPTION */}
+
 
             <p className="text-sm text-gray-500 mt-2 leading-6 max-w-3xl">
               {assignment.description}
             </p>
 
-            {/* FACULTY */}
+
 
             <div className="flex items-center gap-2 text-sm text-gray-500 mt-4">
 
@@ -481,7 +466,7 @@ function AssignmentCard({ assignment }) {
 
         </div>
 
-        {/* STATUS */}
+
 
         <div className="flex-shrink-0">
 
@@ -517,7 +502,7 @@ function AssignmentCard({ assignment }) {
 
       </div>
 
-      {/* BOTTOM INFORMATION */}
+
 
       <div
         className="
@@ -564,7 +549,7 @@ function AssignmentCard({ assignment }) {
 
         </div>
 
-        {/* VIEW BUTTON */}
+   
 
         <button
           type="button"
